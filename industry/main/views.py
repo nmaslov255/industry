@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 
+from .models import Post, Category
 
 def index(request):
     template = loader.get_template('main/index.html')
@@ -8,4 +9,8 @@ def index(request):
 
 def cryptohub(request):
     template = loader.get_template('main/cryptohub.html')
-    return HttpResponse(template.render({}, request))
+
+    category_id = Category.objects.get(name='crypto')
+    posts = Post.objects.filter(category=category_id)
+    context = {'posts': posts}
+    return HttpResponse(template.render(context, request))

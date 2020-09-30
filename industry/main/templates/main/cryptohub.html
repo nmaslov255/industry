@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block news %}
-
+<div class="news__item">
+    <div class="news__flex d-flex">
+        <div class="news__info d-flex">
+            <p class="news__name">
+                Свежие новости
+            </p>
+            <p class="news__text">
+                Воскресенье, 20 сентября.
+            </p>
+        </div>
+        <a href="#" class="news__all">
+            Все материалы <img src="{% static 'img/arrow.png' %}" alt="">
+        </a>
+    </div>
+    {% for post in posts %}
+    <div class="news__one d-flex">
+        <img src="{% static 'img/logo1.png' %}" alt="">
+        <a href="#" class="news__link">
+            {{ post.title }}
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<a href="#" class="news__read bttn">
+    Читать еще
+</a>
 {% endblock %}
