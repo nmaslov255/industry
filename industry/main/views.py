@@ -11,6 +11,6 @@ def cryptohub(request):
     template = loader.get_template('main/cryptohub.html')
 
     category_id = Category.objects.get(name='crypto')
-    posts = Post.objects.filter(category=category_id)
+    posts = Post.objects.filter(category=category_id)[:30]
     context = {'posts': posts}
     return HttpResponse(template.render(context, request))
