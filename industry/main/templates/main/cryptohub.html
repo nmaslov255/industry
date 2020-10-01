@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block news %}
+{% for new in news %}
+{% if new.posts|length > 0 %}
 <div class="news__item">
     <div class="news__flex d-flex">
         <div class="news__info d-flex">
@@ -9,17 +11,17 @@
                 Свежие новости
             </p>
             <p class="news__text">
-                Воскресенье, 20 сентября.
+                {{ new.date | date:"Y-m-d" }}
             </p>
         </div>
         <a href="#" class="news__all">
             Все материалы <img src="{% static 'img/arrow.png' %}" alt="">
         </a>
     </div>
-    {% for post in posts %}
+    {% for post in new.posts %}
     <div class="news__one d-flex">
         <img src="{% static 'img/logo1.png' %}" alt="">
-        <a href="#" class="news__link">
+        <a href="{{ post.link }}" class="news__link">
             {{ post.title }}
         </a>
     </div>
@@ -28,4 +30,6 @@
 <a href="#" class="news__read bttn">
     Читать еще
 </a>
+{% endif %}
+{% endfor %}
 {% endblock %}

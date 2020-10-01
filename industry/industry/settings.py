@@ -126,3 +126,4 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 STATIC_URL = '/static/'
+# STATIC_ROOT = '/home/user/static/industry/'
