@@ -308,6 +308,9 @@ section, footer, header {
   border-radius: 10px;
   margin-bottom: 25px;
 }
+.bottom-field {
+    padding: 25px;
+}
 .news__flex {
   justify-content: space-between;
   padding: 12px 20px 12px 20px;
@@ -349,8 +352,7 @@ section, footer, header {
   border: none;
 }
 .news__read {
-  margin-bottom: 25px;
-  margin: 0 auto 25px;
+  margin: auto;
   border-radius: 12px;
 }
 .news__content {

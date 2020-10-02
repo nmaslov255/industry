@@ -28,7 +28,7 @@ def cryptohub(request):
                     .order_by('pub_date')\
                     .filter(category=category_id, pub_date__gte=start_interval)\
                     .exclude(pub_date__gte=end_inverval)
-        # posts.reverse()
+
         news.append({ 'date': start_interval,
                       'posts': posts[::-1][:30] })
 
