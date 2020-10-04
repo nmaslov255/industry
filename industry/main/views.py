@@ -3,30 +3,45 @@ from django.template import loader
 
 from .models import Post, Category
 
+from .services.CRUD import get_posts
+from .services.helpers import datetime_calendar
+
 import datetime
 from datetime import timedelta
 
-from .services.CRUD import get_posts
-from .services.helpers import datetime_calendar
 
 def index(request):
     template = loader.get_template('main/index.html')
     return HttpResponse(template.render({}, request))
 
-def cryptohub(request):
-    template = loader.get_template('main/cryptohub.html')
+def crypto(request, limit=10):
+    template = loader.get_template('main/news.html')
 
-    today = datetime.datetime.today()
+    today = datetime.date.today()
     delta = timedelta(days=1)
-    limit = 10
+
+    days_per_page = 3
+    start_date = today - days_per_page*delta
 
     news = []
-    for date_from in datetime_calendar(today-3*delta, today, delta):
-        date_to = date_from+delta
-        posts = get_posts(date_from, date_to, 1, limit)
+    for start_date in datetime_calendar(start_date, today, delta):
+        end_date = start_date+delta
+        posts = get_posts(start_date, end_date, 1)
 
-        news.append({ 'date': date_from,
-                      'posts': posts[::-1][:limit] })
+        news.append({ 'date': start_date,
+                      'posts': posts[:limit] })
 
-    context = {'news': news}
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({'news': news[::-1]}, request))
+
+def crypto_ajax(request, start_date=None, limit=10):
+    template = loader.get_template('main/posts.html')
+
+    today = datetime.date.today()
+    delta = timedelta(days=1)
+
+    if start_date is None:
+        start_date = today-delta
+    end_date = today+delta
+
+    posts = get_posts(start_date, end_date, 1)
+    return HttpResponse(template.render({'posts': posts[:limit]}, request))

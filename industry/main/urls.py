@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('cryptohub', views.cryptohub, name='cryptohub')
+    path('crypto', views.crypto, name='crypto'),
+    path('crypto_ajax/<int:limit>', views.crypto_ajax, name='crypto_ajax')
 ]
