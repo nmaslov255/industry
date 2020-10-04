@@ -8,6 +8,7 @@ from .services.helpers import datetime_calendar
 
 import datetime
 from datetime import timedelta
+from django.utils.dateparse import parse_date
 
 
 def index(request):
@@ -33,7 +34,7 @@ def crypto(request, limit=10):
 
     return HttpResponse(template.render({'news': news[::-1]}, request))
 
-def crypto_ajax(request, start_date=None, limit=10):
+def crypto_ajax(request, start_date, limit=10):
     template = loader.get_template('main/posts.html')
 
     today = datetime.date.today()
@@ -41,7 +42,10 @@ def crypto_ajax(request, start_date=None, limit=10):
 
     if start_date is None:
         start_date = today-delta
-    end_date = today+delta
+    else:
+        start_date = parse_date(start_date)
+
+    end_date = start_date+delta
 
     posts = get_posts(start_date, end_date, 1)
     return HttpResponse(template.render({'posts': posts[:limit]}, request))
