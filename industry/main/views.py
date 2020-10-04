@@ -1,10 +1,13 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 
 from .models import Post, Category
 
 import datetime
 from datetime import timedelta
+
+from .services.CRUD import get_posts
+from .services.helpers import datetime_calendar
 
 def index(request):
     template = loader.get_template('main/index.html')
@@ -13,24 +16,17 @@ def index(request):
 def cryptohub(request):
     template = loader.get_template('main/cryptohub.html')
 
-    today = datetime.date.today()
-    day_delta = timedelta(days=1)
+    today = datetime.datetime.today()
+    delta = timedelta(days=1)
+    limit = 10
 
-    days_per_page = 3
-    category_id = 1
-    
     news = []
-    for days in range(days_per_page):
-        start_interval = today-days*day_delta
-        end_inverval = today-(days-1)*day_delta
+    for date_from in datetime_calendar(today-3*delta, today, delta):
+        date_to = date_from+delta
+        posts = get_posts(date_from, date_to, 1, limit)
 
-        posts = Post.objects\
-                    .order_by('pub_date')\
-                    .filter(category=category_id, pub_date__gte=start_interval)\
-                    .exclude(pub_date__gte=end_inverval)
-
-        news.append({ 'date': start_interval,
-                      'posts': posts[::-1][:30] })
+        news.append({ 'date': date_from,
+                      'posts': posts[::-1][:limit] })
 
     context = {'news': news}
     return HttpResponse(template.render(context, request))
