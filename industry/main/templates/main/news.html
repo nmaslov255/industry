@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block news %}
+    {% for new in news %}
+        {% if new.posts|length > 0 %}
+            <div class="news__item">
+                <div class="news__flex d-flex">
+                    <div class="news__info d-flex">
+                        <p class="news__name">
+                            Свежие новости
+                        </p>
+                        <p class="news__text">
+                            {{ new.date | date:"Y-m-d" }}
+                        </p>
+                    </div>
+                    <a href="#" class="news__all">
+                        Все материалы <img src="{% static 'img/arrow.png' %}" alt="">
+                    </a>
+                </div>
+                <div class="items__box">
+                    {% with new.posts as posts %}
+                        {% include './posts.html' %}
+                    {% endwith %}
+                </div>
+                <div class="bottom-field">
+                    <button class="news__read bttn">
+                        Читать еще
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
