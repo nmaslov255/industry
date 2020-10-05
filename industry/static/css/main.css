@@ -333,7 +333,8 @@ section, footer, header {
   margin-right: 7px;
   border-right: 1px solid #808080;
 }
-.news__text {
+.news__text,
+.date__text {
   font-family: "SegoeUI-Semilight";
   font-size: 13px;
 }
@@ -699,7 +700,8 @@ section, footer, header {
   .news__content {
     margin-left: 0px;
   }
-  .news__text {
+  .news__text,
+  .date__text {
     font-size: 14px;
   }
   .news__one a {
@@ -895,7 +897,8 @@ section, footer, header {
   }
 }
 @media screen and (max-width: 767px) {
-   .news__text {
+   .news__text,
+   .date__text {
     font-size: 12px;
   }
   .news__name {
@@ -960,7 +963,8 @@ section, footer, header {
   .news__flex {
     padding: 12px 7px 12px 7px;
   }
-  .news__text {
+  .news__text,
+  .date__text {
     font-size: 10px;
   }
   .news__all {
