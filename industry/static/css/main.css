@@ -141,6 +141,15 @@ section, footer, header {
 .top__box a {
   color: #fff;
 }
+.top li a.disabled,
+.menu li a.disabled{
+    cursor: default;
+    color: gray;
+}
+.top li a.disabled:hover,
+.menu li a.disabled:hover{
+    color: gray;
+}
 .top__num {
   font-size: 46.5px;
   font-family: "Century751BT-SemiBold";
