@@ -15,7 +15,7 @@ def index(request):
     template = loader.get_template('main/index.html')
     return HttpResponse(template.render({}, request))
 
-def crypto(request, limit=10):
+def satoshi(request, limit=10):
     template = loader.get_template('main/news.html')
 
     today = datetime.date.today()
@@ -34,7 +34,7 @@ def crypto(request, limit=10):
 
     return HttpResponse(template.render({'news': news[::-1]}, request))
 
-def crypto_ajax(request, start_date, limit=10):
+def satoshi_ajax(request, start_date, limit=10):
     template = loader.get_template('main/posts.html')
 
     today = datetime.date.today()

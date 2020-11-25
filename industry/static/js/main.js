@@ -17,7 +17,7 @@ $('.bottom-field .news__read.bttn').click(function(event) {
     let limit = items_length+10;
 
     $.ajax({
-        url: 'crypto_ajax/'+date+'/'+limit,
+        url: 'satoshi_ajax/'+date+'/'+limit,
         success: function(responce){
             $newsBlock.find('.items__box').html(responce);
 
