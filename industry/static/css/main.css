@@ -352,6 +352,7 @@ section, footer, header {
   border-bottom: 1px solid #DCDCDC;
 }
 .news__one img {
+  border-radius: 25px;
   max-width: 50px;
   margin-right: 14px;
 }
@@ -979,6 +980,7 @@ section, footer, header {
     padding: 4px 9px;
   }
   .news__one img {
+    border-radius: 25px;
     max-width: 38px;
     margin-right: 10px;
   }
