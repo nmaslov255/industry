@@ -27,3 +27,15 @@ $('.bottom-field .news__read.bttn').click(function(event) {
         }
     });
 });
+
+$.ajax({
+    url: 'https://api.coingecko.com/api/v3/simple/price',
+    data: {'ids': 'etoro-euro,tether,bitcoin,ethereum', 
+           'vs_currencies': 'rub'},
+    success: function(responce){
+        $('#usdt-currency').text(responce['tether']['rub'])
+        $('#etoro-euro-currency').text(responce['etoro-euro']['rub'])
+        $('#bitcoin-currency').text(responce['bitcoin']['rub'])
+        $('#ethereum-currency').text(responce['ethereum']['rub'])
+    }
+})
