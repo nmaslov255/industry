@@ -366,6 +366,7 @@ section, footer, header {
   border-radius: 12px;
 }
 .news__content {
+  width: 100%;
   margin-left: 27px;
   margin-right: 15px;
 }
