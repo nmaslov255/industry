@@ -584,6 +584,9 @@ section, footer, header {
   .info__item p {
     font-size: 16px;
   }
+  .info__item .preloader_currency {
+    width: 16px;
+  }  
   .news__two_pos .news__bottom h5 {
     font-size: 19px;
     width: 80%;
@@ -692,6 +695,9 @@ section, footer, header {
   }
   .info__item p {
     font-size: 14px;
+  }
+  .info__item .preloader_currency {
+    width: 14px;
   }
   .info__block {
     margin-left: 10px;
