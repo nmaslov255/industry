@@ -190,12 +190,12 @@ section, footer, header {
 .top li a {
   font-size: 17.5px;
   font-family: "SegoeUI-Semilight";
-  display: flex;
+  /*display: flex;*/
 }
 .top__hub {
   font-family: "SegoeUI-SemiBold";
   color: #000000;
-  display: flex;
+  display: initial;
   align-items: center;
   justify-content: center;
   background: #ffff;
@@ -1041,4 +1041,12 @@ section, footer, header {
   .burger__list {
     margin-left: 29px;
   }
+}
+ul.d-flex li {
+    flex: 1 1 auto;
+    text-align: center;
+    border-right: 1px solid gray;
+}
+ul.d-flex li:last-child{
+    border-right: 0px;
 }
