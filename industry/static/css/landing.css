@@ -1,0 +1,184 @@
+/*!
+ * @author Timur Valiyev
+ * @link https://webprowww.github.io
+ */
+body, html {
+    font-size: 14px;
+    height:100%
+}
+
+body {
+    padding: 15px 0;
+    font-family: Raleway, sans-serif;
+    font-weight:300
+}
+
+.wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height:100%
+}
+
+ul {
+    margin: 0 0 15px;
+    padding:0
+}
+
+ul, ul > li {
+    display: block;
+    list-style:none
+}
+
+ul > li {
+    margin: 0;
+    padding:0 0 0 1em
+}
+
+ul > li:before {
+    display: block;
+    margin: 0 0 0 -1em;
+    padding: 0;
+    content: "-";
+    float:left
+}
+
+.section {
+    display: block;
+    margin: 0;
+    padding:15px 0 1px
+}
+
+.logo {
+    margin:0 0 15px
+}
+
+.logo, .logo-img {
+    display: block;
+    padding:0
+}
+
+.logo-img {
+    margin:0
+}
+
+.title {
+    display: block;
+    margin: 0 0 15px;
+    padding: 0;
+    font-weight: 300;
+    font-size: 2rem;
+    line-height: 1.3;
+    text-align:center
+}
+
+.i-col {
+    padding-top: 15px;
+    padding-bottom:15px
+}
+
+.item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height:100%
+}
+
+.i-title {
+    margin: 0 0 15px;
+    font-weight: 300;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 400;
+    white-space:nowrap
+}
+
+.i-logo, .i-title {
+    display: block;
+    padding:0
+}
+
+.i-logo {
+    margin: 0 auto 15px;
+    width: 100%;
+    height: auto;
+    max-width:100%
+}
+
+.brake-xl, .divider {
+    display:none
+}
+
+.fw-300 {
+    font-weight:300
+}
+
+.fw-400 {
+    font-weight:400
+}
+
+.fw-600 {
+    font-weight:600
+}
+
+@media (min-width: 1200px) {
+    .i-col {
+        -ms-flex: 0 0 28%;
+        flex: 0 0 28%;
+        max-width:28%
+    }
+
+    .brake-xl, .i-col {
+        -webkit-box-flex:0
+    }
+
+    .brake-xl {
+        display: block;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width:100%
+    }
+}
+
+@media (min-width: 1600px) {
+    .container {
+        max-width:1570px
+    }
+
+    .i-col {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width:100%
+    }
+
+    .brake-xl {
+        display:none
+    }
+
+    .divider {
+        display: block;
+        margin: 0;
+        padding: 0;
+        content: "";
+        position: relative;
+        width: 1px;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, hsla(0, 0%, 50.2%, 0)), color-stop(hsla(0, 0%, 50.2%, .3)), to(hsla(0, 0%, 50.2%, 0)));
+        background-image: linear-gradient(180deg, hsla(0, 0%, 50.2%, 0) 20%, hsla(0, 0%, 50.2%, .3), hsla(0, 0%, 50.2%, 0))
+    }
+}
+

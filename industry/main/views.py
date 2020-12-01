@@ -11,8 +11,8 @@ from datetime import timedelta
 from django.utils.dateparse import parse_date
 
 
-def index(request):
-    template = loader.get_template('main/index.html')
+def landing(request):
+    template = loader.get_template('landing.html')
     return HttpResponse(template.render({}, request))
 
 def news(request, category_slug, limit=10):
