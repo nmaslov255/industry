@@ -3,7 +3,7 @@ from django.template import loader
 
 from .models import Post, Category
 
-from .services.CRUD import get_posts
+from .services.CRUD import get_posts, get_category_id
 from .services.helpers import datetime_calendar
 
 import datetime
@@ -15,7 +15,7 @@ def index(request):
     template = loader.get_template('main/index.html')
     return HttpResponse(template.render({}, request))
 
-def news(request, category, limit=10):
+def news(request, category_slug, limit=10):
     template = loader.get_template('main/news.html')
 
     today = datetime.date.today()
@@ -24,17 +24,20 @@ def news(request, category, limit=10):
     days_per_page = 3
     start_date = today - days_per_page*delta
 
+    category_id = get_category_id(category_slug)
+
     news = []
     for start_date in datetime_calendar(start_date, today, delta):
         end_date = start_date+delta
-        posts = get_posts(start_date, end_date, 1)
+        posts = get_posts(start_date, end_date, category_id)
 
         news.append({ 'date': start_date,
                       'posts': posts[:limit] })
 
-    return HttpResponse(template.render({'news': news[::-1]}, request))
+    return HttpResponse(template.render({
+        'news': news[::-1], 'category_id': category_id}, request))
 
-def news_ajax(request, start_date, limit=10):
+def news_ajax(request, category_id, start_date, limit=10):
     template = loader.get_template('main/posts.html')
 
     today = datetime.date.today()
@@ -47,5 +50,5 @@ def news_ajax(request, start_date, limit=10):
 
     end_date = start_date+delta
 
-    posts = get_posts(start_date, end_date, 1)
+    posts = get_posts(start_date, end_date, category_id)
     return HttpResponse(template.render({'posts': posts[:limit]}, request))

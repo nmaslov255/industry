@@ -34,7 +34,7 @@
                     </div>
                     <ul class="d-flex top__old">
                         <li>
-                            <a href="#" class="disabled">
+                            <a href="{% url 'main:news' 'fresh' %}" class="disabled">
                                  Свежее
                             </a>
                         </li>
@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'main:news' 'satoshinews' %}">
+                            <a href="{% url 'main:news' 'satoshi' %}">
                                 Satoshi<div class="top__hub">News</div>
                             </a>
                         </li>
@@ -122,7 +122,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'main:news' 'satoshinews' %}">
+                        <a href="{% url 'main:news' 'satoshi' %}">
                             Satoshi<div class="top__hub">News</div>
                         </a>
                     </li>
