@@ -5,6 +5,7 @@ from . import views
 app_name = 'main'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('satoshi', views.satoshi, name='satoshi'),
-    path('satoshi_ajax/<str:start_date>/<int:limit>', views.satoshi_ajax, name='satoshi_ajax')
+    path('news/<str:category>', views.news, name='news'),
+    path('news_ajax/<str:category>/<str:start_date>/<int:limit>', 
+          views.news_ajax, name='news_ajax')
 ]
