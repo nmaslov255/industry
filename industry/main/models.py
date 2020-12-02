@@ -5,10 +5,14 @@ class Category(models.Model):
     slug = models.SlugField(max_length=50, blank=True)
     
     is_news = models.BooleanField(default=False)
-    is_disabled = models.BooleanField(default=False)
+
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
     
     def __str__(self):
         return "{}".format(self.name)
+
+    class Meta:
+        ordering = ['order']
 
 class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)

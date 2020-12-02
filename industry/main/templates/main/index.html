@@ -1,1 +1,21 @@
 {% extends 'base.html' %}
+
+{% block category %}
+    {% for category in categories %}
+        <li>
+            <a href="{% url 'main:news' category.slug %}">
+                {{ category.name }} {% if category.is_news %}<div class="top__hub">News</div>{% endif %}
+            </a>
+        </li>
+    {% endfor %}
+{% endblock category %}
+
+{% block category_burger %}
+    {% for category in categories %}
+        <li>
+            <a href="#" class="disabled">
+                {{ category.name }}
+            </a>
+        </li>
+    {% endfor %}
+{% endblock category_burger %}

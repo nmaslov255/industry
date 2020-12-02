@@ -13,3 +13,6 @@ def get_category_id(slug):
         return Category.objects.filter(slug=slug).get().id
     except Category.DoesNotExist:
         raise Http404("Category does not exist")
+
+def get_all_categories():
+    return Category.objects.all().order_by('order')

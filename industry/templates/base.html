@@ -33,6 +33,7 @@
                         4.0
                     </div>
                     <ul class="d-flex top__old">
+                        {% block category %}
                         <li>
                             <a href="{% url 'main:news' 'fresh' %}" class="disabled">
                                  Свежее
@@ -64,10 +65,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'main:news' 'satoshi' %}">
+                            <a href="#">
                                 Satoshi<div class="top__hub">News</div>
                             </a>
                         </li>
+                        {% endblock category %}
                     </ul>
                     <div class="top__info d-flex">
                         <a href="#" class="top__enter">
@@ -91,6 +93,7 @@
         <div class="burger">
             <div class="burger__flex d-flex">
                 <ul>
+                    {% block category_burger %}
                     <li>
                         <a href="#" class="disabled">
                              Свежее
@@ -122,10 +125,11 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'main:news' 'satoshi' %}">
+                        <a href="#">
                             Satoshi<div class="top__hub">News</div>
                         </a>
                     </li>
+                    {% endblock category_burger %}
                 </ul>
             </div>
         </div>

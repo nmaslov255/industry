@@ -3,7 +3,7 @@ from django.template import loader
 
 from .models import Post, Category
 
-from .services.CRUD import get_posts, get_category_id
+from .services.CRUD import get_posts, get_category_id, get_all_categories
 from .services.helpers import datetime_calendar
 
 import datetime
@@ -26,6 +26,8 @@ def news(request, category_slug, limit=10):
 
     category_id = get_category_id(category_slug)
 
+    categories = get_all_categories()
+
     news = []
     for start_date in datetime_calendar(start_date, today, delta):
         end_date = start_date+delta
@@ -35,7 +37,7 @@ def news(request, category_slug, limit=10):
                       'posts': posts[:limit] })
 
     return HttpResponse(template.render({
-        'news': news[::-1], 'category_id': category_id}, request))
+        'news': news[::-1], 'category_id': category_id, 'categories': categories}, request))
 
 def news_ajax(request, category_id, start_date, limit=10):
     template = loader.get_template('main/posts.html')
