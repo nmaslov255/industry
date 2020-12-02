@@ -32,9 +32,14 @@
 
 <header class="section my-auto">
     <div class="container">
-        <a class="logo" href="" title="Индустрия 4.0">
-            <img class="logo-img" width="190" src="{% static 'img/logo-full.svg' %}" title="Индустрия 4.0">
-        </a>
+        <div class="row justify-content-start justify-container">
+            <div class="logo col-12 col-sm-12 col-lg-4 ">
+                <img class="logo-img" width="190" src="{% static 'img/logo-full.svg' %}" title="Индустрия 4.0">
+            </div>
+            <div class="col-12 col-sm-12 col-lg-4 ">
+                <a href="{% url 'main:news' 'fresh' %}" class="news-tape bttn">Лента новостей</a>
+            </div>
+        </div>
     </div><!-- .container -->
 </header>
 

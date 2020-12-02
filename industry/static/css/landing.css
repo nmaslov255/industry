@@ -182,3 +182,36 @@ ul > li:before {
     }
 }
 
+.news-tape {
+    margin-top: 6px !important;
+}
+
+.bttn {
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 172px;
+    height: 35.5px;
+    color: #ffffff;
+    font-size: 14.5px;
+    text-transform: uppercase;
+    background: #000000;
+    border: 1px solid transparent;
+    margin: auto;
+    border-radius: 12px;
+}
+
+.bttn:hover {
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s ease;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.justify-container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
