@@ -1042,11 +1042,11 @@ section, footer, header {
     margin-left: 29px;
   }
 }
-ul.d-flex li {
+section.top ul.d-flex li {
     flex: 1 1 auto;
     text-align: center;
     border-right: 1px solid gray;
 }
-ul.d-flex li:last-child{
+section.top ul.d-flex li:last-child{
     border-right: 0px;
 }
