@@ -1050,3 +1050,9 @@ section.top ul.d-flex li {
 section.top ul.d-flex li:last-child{
     border-right: 0px;
 }
+.top__box li a.active {
+color: red;
+}
+.burger li a.active {
+color: red;
+}

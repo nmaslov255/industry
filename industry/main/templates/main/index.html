@@ -3,7 +3,7 @@
 {% block category %}
     {% for category in categories %}
         <li>
-            <a href="{% url 'main:news' category.slug %}">
+            <a href="{% url 'main:news' category.slug %}" class="{% if category.id == category_id %}active{% endif %}">
                 {{ category.name }} {% if category.is_news %}<div class="top__hub">News</div>{% endif %}
             </a>
         </li>
@@ -13,8 +13,8 @@
 {% block category_burger %}
     {% for category in categories %}
         <li>
-            <a href="#" class="disabled">
-                {{ category.name }}
+            <a href="{% url 'main:news' category.slug %}" class="{% if category.id == category_id %}active{% endif %}">
+                {{ category.name }} {% if category.is_news %}<div class="top__hub">News</div>{% endif %}
             </a>
         </li>
     {% endfor %}

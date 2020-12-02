@@ -36,8 +36,9 @@ def news(request, category_slug, limit=10):
         news.append({ 'date': start_date,
                       'posts': posts[:limit] })
 
-    return HttpResponse(template.render({
-        'news': news[::-1], 'category_id': category_id, 'categories': categories}, request))
+    render_params = {'news': news[::-1], 'category_id': category_id, 
+                     'categories': categories}
+    return HttpResponse(template.render(render_params, request))
 
 def news_ajax(request, category_id, start_date, limit=10):
     template = loader.get_template('main/posts.html')
