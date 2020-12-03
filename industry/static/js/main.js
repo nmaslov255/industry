@@ -51,9 +51,14 @@ $('.news__item .news__all').click(function(event) {
 
     $.ajax({
         url: query_url,
+        beforeSend: function(){
+            $btn.find('span').hide();
+            $btn.find('img').show();
+        },
         success: function(responce){
             $newsBlock.find('.items__box').html(responce);
             $newsBlock.find('.bottom-field').hide()
+            $btn.hide(500)
         }
     });
 });

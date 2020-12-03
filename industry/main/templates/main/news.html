@@ -15,7 +15,8 @@
                         </p>
                     </div>
                     <span class="news__all" data-total-news-per-day="{{new.total_news_per_day}}">
-                        Все материалы <img src="{% static 'img/arrow.png' %}" alt="">
+                        <span>Все материалы <img src="{% static 'img/arrow.png' %}" alt=""></span>
+                        <img style="display: none" src="{% static 'img/preloader-currency.gif' %}" alt="loads">
                     </span>
                 </div>
                 <div class="items__box">
