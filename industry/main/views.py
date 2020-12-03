@@ -38,7 +38,7 @@ def news(request, category_slug, limit=10):
                       'total_news_per_day': len(posts)})
 
     render_params = { 'news': news[::-1], 'category_id': category.id, 
-                      'categories': categories,  'logo': category.logo}
+                      'categories': categories}
 
     return HttpResponse(template.render(render_params, request))
 

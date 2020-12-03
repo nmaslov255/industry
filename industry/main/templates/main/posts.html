@@ -2,7 +2,7 @@
 
 {% for post in posts %}
 <div class="news__one d-flex">
-    <img src="{% static 'img/' %}{{logo|default_if_none:'default_logo.png'}}" alt="{{logo}}">
+    <img src="{% static 'img/' %}{{post.category.logo|default_if_none:'default_logo.png'}}" alt="{{post.category.logo}}">
     <a href="{{ post.link }}" class="news__link">
         {{ post.title }}
     </a>
