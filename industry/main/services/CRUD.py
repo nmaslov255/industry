@@ -8,9 +8,9 @@ def get_posts(start_date, end_date, category_id):
                .filter(category=category_id, pub_date__gte=start_date)\
                .exclude(pub_date__gte=end_date)
 
-def get_category_id(slug):
+def get_category(slug):
     try:
-        return Category.objects.filter(slug=slug).get().id
+        return Category.objects.filter(slug=slug).get()
     except Category.DoesNotExist:
         raise Http404("Category does not exist")
 

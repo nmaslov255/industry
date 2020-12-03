@@ -3,7 +3,7 @@ from django.template import loader
 
 from .models import Post, Category
 
-from .services.CRUD import get_posts, get_category_id, get_all_categories
+from .services.CRUD import get_posts, get_category, get_all_categories
 from .services.helpers import datetime_calendar
 
 import datetime
@@ -24,21 +24,21 @@ def news(request, category_slug, limit=10):
     days_per_page = 3
     start_date = today - days_per_page*delta
 
-    category_id = get_category_id(category_slug)
+    category = get_category(category_slug)
 
     categories = get_all_categories()
 
     news = []
     for start_date in datetime_calendar(start_date, today, delta):
         end_date = start_date+delta
-        posts = get_posts(start_date, end_date, category_id)
+        posts = get_posts(start_date, end_date, category.id)
 
         news.append({ 'date': start_date,
                       'posts': posts[:limit],
                       'total_news_per_day': len(posts)})
 
-    render_params = { 'news': news[::-1], 'category_id': category_id, 
-                      'categories': categories }
+    render_params = { 'news': news[::-1], 'category_id': category.id, 
+                      'categories': categories,  'logo': category.logo}
 
     return HttpResponse(template.render(render_params, request))
 

@@ -7,6 +7,7 @@ class Category(models.Model):
     is_news = models.BooleanField(default=False)
 
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
+    logo = models.CharField(max_length=255, null=True)
     
     def __str__(self):
         return "{}".format(self.name)
