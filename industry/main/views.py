@@ -34,10 +34,12 @@ def news(request, category_slug, limit=10):
         posts = get_posts(start_date, end_date, category_id)
 
         news.append({ 'date': start_date,
-                      'posts': posts[:limit] })
+                      'posts': posts[:limit],
+                      'total_news_per_day': len(posts)})
 
-    render_params = {'news': news[::-1], 'category_id': category_id, 
-                     'categories': categories}
+    render_params = { 'news': news[::-1], 'category_id': category_id, 
+                      'categories': categories }
+
     return HttpResponse(template.render(render_params, request))
 
 def news_ajax(request, category_id, start_date, limit=10):

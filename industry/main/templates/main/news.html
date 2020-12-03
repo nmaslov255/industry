@@ -23,11 +23,13 @@
                         {% include './posts.html' %}
                     {% endwith %}
                 </div>
+                {% if new.total_news_per_day > 10 %}
                 <div class="bottom-field">
                     <button class="news__read bttn" data-category-id="{{ category_id }}">
                         Читать еще
                     </button>
                 </div>
+                {% endif %}
             </div>
         {% endif %}
     {% endfor %}
