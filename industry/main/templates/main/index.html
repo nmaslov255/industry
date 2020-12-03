@@ -4,17 +4,18 @@
     {% for category in categories %}
         <li>
             <a href="{% url 'main:news' category.slug %}" class="{% if category.id == category_id %}active{% endif %}">
-                {{ category.name }} {% if category.is_news %}<div class="top__hub">News</div>{% endif %}
+                <span data-category-slug="{{category.slug}}">{{ category.name }}</span> {% if category.is_news %}<div class="top__hub">News</div>{% endif %}
             </a>
         </li>
     {% endfor %}
 {% endblock category %}
 
+{# TODO: remove copy-paste #}
 {% block category_burger %}
     {% for category in categories %}
         <li>
             <a href="{% url 'main:news' category.slug %}" class="{% if category.id == category_id %}active{% endif %}">
-                {{ category.name }} {% if category.is_news %}<div class="top__hub">News</div>{% endif %}
+                <span data-category-slug="{{category.slug}}">{{ category.name }}</span> {% if category.is_news %}<div class="top__hub">News</div>{% endif %}
             </a>
         </li>
     {% endfor %}

@@ -2,38 +2,5 @@
 {% load static %}
 
 {% block news %}
-    {% for new in news %}
-        {% if new.posts|length > 0 %}
-            <div class="news__item" data-category-id="{{ category_id }}">
-                <div class="news__flex d-flex">
-                    <div class="news__info d-flex">
-                        <p class="news__name">
-                            Свежие новости
-                        </p>
-                        <p class="date__text" date="{{ new.date | date:"Y-m-d"}}">
-                            {{ new.date | date:"l, j E. " }}
-                        </p>
-                    </div>
-                    {% if new.total_news_per_day > 10 %}
-                    <span class="news__all" data-total-news-per-day="{{new.total_news_per_day}}">
-                        <span>Все материалы <img src="{% static 'img/arrow.png' %}" alt=""></span>
-                        <img style="display: none" src="{% static 'img/preloader-currency.gif' %}" alt="loads">
-                    </span>
-                    {% endif %}
-                </div>
-                <div class="items__box">
-                    {% with new.posts as posts %}
-                        {% include './posts.html' %}
-                    {% endwith %}
-                </div>
-                {% if new.total_news_per_day > 10 %}
-                <div class="bottom-field">
-                    <button class="news__read bttn">
-                        Читать еще
-                    </button>
-                </div>
-                {% endif %}
-            </div>
-        {% endif %}
-    {% endfor %}
+    {% include './news_ajax.html' %}
 {% endblock %}

@@ -1,3 +1,20 @@
+window.onscroll = function(ev) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        let origin = document.location.origin;
+        let category_slug = $('.top__old a.active span').data('category-slug');
+        let offset = $('.news__item').length;
+        let query_url = `${origin}/more_news_ajax/${category_slug}/${offset}`;
+
+        $.ajax({
+            url: query_url,
+            success: function(responce){
+                console.log(1111)
+                $('.news__content').append(responce)
+            }
+        });
+    }
+};
+
 $('.menuu .button').click(function(event) {
     $(this).toggleClass('active');
     $('.burger').toggleClass('active');
