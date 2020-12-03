@@ -4,7 +4,7 @@
 {% block news %}
     {% for new in news %}
         {% if new.posts|length > 0 %}
-            <div class="news__item">
+            <div class="news__item" data-category-id="{{ category_id }}">
                 <div class="news__flex d-flex">
                     <div class="news__info d-flex">
                         <p class="news__name">
@@ -14,9 +14,9 @@
                             {{ new.date | date:"l, j E. " }}
                         </p>
                     </div>
-                    <a href="#" class="news__all">
+                    <span class="news__all" data-total-news-per-day="{{new.total_news_per_day}}">
                         Все материалы <img src="{% static 'img/arrow.png' %}" alt="">
-                    </a>
+                    </span>
                 </div>
                 <div class="items__box">
                     {% with new.posts as posts %}
@@ -25,7 +25,7 @@
                 </div>
                 {% if new.total_news_per_day > 10 %}
                 <div class="bottom-field">
-                    <button class="news__read bttn" data-category-id="{{ category_id }}">
+                    <button class="news__read bttn">
                         Читать еще
                     </button>
                 </div>

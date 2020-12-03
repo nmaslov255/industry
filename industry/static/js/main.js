@@ -14,7 +14,7 @@ $('.bottom-field .news__read.bttn').click(function(event) {
     let items_length = $itemBlock.length;
 
     let origin = document.location.origin;
-    let category_id = $btn.data('category-id');
+    let category_id = $newsBlock.data('category-id');
     let date = $dateBlock.attr('date');
     let limit = items_length+10;
 
@@ -26,8 +26,34 @@ $('.bottom-field .news__read.bttn').click(function(event) {
             $newsBlock.find('.items__box').html(responce);
 
             if ($newsBlock.find('.news__one').length != limit){
-                $btn.closest('.bottom-field').hide()
+                $newsBlock.find('.bottom-field').hide()
             };
+        }
+    });
+});
+
+// TODO: remove copy-paste
+$('.news__item .news__all').click(function(event) {
+    let $btn = $(this)
+
+    let $newsBlock = $(this).closest('.news__item');
+    let $dateBlock = $newsBlock.find('.date__text');
+    let $itemBlock = $newsBlock.find('.news__one');
+
+    let items_length = $itemBlock.length;
+
+    let origin = document.location.origin;
+    let category_id = $newsBlock.data('category-id');
+    let date = $dateBlock.attr('date');
+    let limit = $(this).data('total-news-per-day')
+
+    let query_url = `${origin}/news_ajax/${category_id}/${date}/${limit}`;
+
+    $.ajax({
+        url: query_url,
+        success: function(responce){
+            $newsBlock.find('.items__box').html(responce);
+            $newsBlock.find('.bottom-field').hide()
         }
     });
 });

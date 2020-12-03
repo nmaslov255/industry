@@ -316,6 +316,7 @@ section, footer, header {
   background: #fff;
   border-radius: 10px;
   margin-bottom: 25px;
+  cursor: pointer;
 }
 .bottom-field {
     padding: 25px;
