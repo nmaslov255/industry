@@ -14,10 +14,12 @@
                             {{ new.date | date:"l, j E. " }}
                         </p>
                     </div>
+                    {% if new.total_news_per_day > 10 %}
                     <span class="news__all" data-total-news-per-day="{{new.total_news_per_day}}">
                         <span>Все материалы <img src="{% static 'img/arrow.png' %}" alt=""></span>
                         <img style="display: none" src="{% static 'img/preloader-currency.gif' %}" alt="loads">
                     </span>
+                    {% endif %}
                 </div>
                 <div class="items__box">
                     {% with new.posts as posts %}
