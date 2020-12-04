@@ -4,13 +4,18 @@ var ready_scroll_flag = true;
     let content_height = $(window).scrollTop() + $(window).height()
     if (ready_scroll_flag && content_height == $(document).height()) {
         ready_scroll_flag = false;
-        
+
         $('.news__loader').show();
 
         let origin = document.location.origin;
         let category_slug = $('.top__old .active span').data('category-slug');
         let offset = $('.news__item').length;
         let query_url = `${origin}/more_news_ajax/${category_slug}/${offset}`;
+
+        // remove monkey patch
+        if (offset < 4) {
+            return;
+        }
 
         $.get(query_url, function(responce){
             $('.news__loader').hide()
