@@ -14,6 +14,7 @@ var ready_scroll_flag = true;
 
         // remove monkey patch
         if (offset < 4) {
+            $('.news__loader').hide()
             return;
         }
 
