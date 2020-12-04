@@ -1,19 +1,27 @@
-window.onscroll = function(ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+var ready_scroll_flag = true;
+
+ $(window).scroll(function() {
+    let content_height = $(window).scrollTop() + $(window).height()
+    if (ready_scroll_flag && content_height == $(document).height()) {
+        ready_scroll_flag = false;
+        
+        $('.news__loader').show();
+
         let origin = document.location.origin;
-        let category_slug = $('.top__old a.active span').data('category-slug');
+        let category_slug = $('.top__old .active span').data('category-slug');
         let offset = $('.news__item').length;
         let query_url = `${origin}/more_news_ajax/${category_slug}/${offset}`;
 
-        $.ajax({
-            url: query_url,
-            success: function(responce){
-                console.log(1111)
-                $('.news__content').append(responce)
-            }
+        $.get(query_url, function(responce){
+            $('.news__loader').hide()
+            $('.news__content').append(responce)
+        }).always(function(){
+            setTimeout(function(){
+                ready_scroll_flag = true; //Reset the flag here
+            }, 200)
         });
     }
-};
+});
 
 $('.menuu .button').click(function(event) {
     $(this).toggleClass('active');

@@ -1057,3 +1057,7 @@ color: red;
 .burger li a.active {
 color: red;
 }
+
+.news .news__loader {
+    text-align: center;
+}
