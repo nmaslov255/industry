@@ -48,7 +48,7 @@ def more_news_ajax(request, category_slug, offset, limit=10):
     today = datetime.date.today()
     day = timedelta(days=1)
 
-    days_per_page = 4
+    days_per_page = 2
     end_date = today - day*offset
     start_date = end_date - days_per_page*day + day
 
