@@ -24,11 +24,11 @@ var ready_scroll_flag = true;
                 $('.news__content').append(responce)
             }, 200);
         }).always(function(){
-            unbindNewsEvent();
-            bindNewsEvent();
             setTimeout(function(){
+                unbindNewsEvent();
+                bindNewsEvent();
                 ready_scroll_flag = true; //Reset the flag here
-            }, 200)
+            }, 300)
         });
     }
 });
