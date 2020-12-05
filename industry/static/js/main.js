@@ -72,6 +72,7 @@ function bindNewsEvent(){
             success: function(responce){
                 setTimeout(function(){
                     $postLoader.hide();
+                    $btn.show();
 
                     $newsBlock.find('.items__box').html(responce);
 
