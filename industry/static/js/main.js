@@ -53,6 +53,7 @@ function bindNewsEvent(){
         let $newsBlock = $(this).closest('.news__item');
         let $dateBlock = $newsBlock.find('.date__text');
         let $itemBlock = $newsBlock.find('.news__one');
+        let $postLoader = $newsBlock.find('.post__loader');
 
         let items_length = $itemBlock.length;
 
@@ -62,15 +63,22 @@ function bindNewsEvent(){
         let limit = items_length+10;
 
         let query_url = `${origin}/news_ajax/${category_id}/${date}/${limit}`;
+        
+        $postLoader.show();
+        $btn.hide();
 
         $.ajax({
             url: query_url,
             success: function(responce){
-                $newsBlock.find('.items__box').html(responce);
+                setTimeout(function(){
+                    $postLoader.hide();
 
-                if ($newsBlock.find('.news__one').length != limit){
-                    $newsBlock.find('.bottom-field').hide()
-                };
+                    $newsBlock.find('.items__box').html(responce);
+
+                    if ($newsBlock.find('.news__one').length != limit){
+                        $newsBlock.find('.bottom-field').hide()
+                    };
+                }, 200);
             }
         });
     });

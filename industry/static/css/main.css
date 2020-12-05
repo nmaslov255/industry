@@ -1061,3 +1061,12 @@ color: red;
 .news .news__loader {
     text-align: center;
 }
+
+.news .post__loader {
+    display: none;
+    text-align: center;
+}
+
+.news .post__loader img {
+    width: 30px;
+}

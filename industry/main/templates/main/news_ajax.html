@@ -15,7 +15,7 @@
                     </div>
                     {% if new.total_news_per_day > 10 %}
                     <span class="news__all" data-total-news-per-day="{{new.total_news_per_day}}">
-                        <span>Все материалы <img src="{% static 'img/arrow.png' %}" alt=""></span>
+                        <span>Все материалы <img src="{% static 'img/arrow.png' %}" alt="load"></span>
                         <img style="display: none" src="{% static 'img/preloader-currency.gif' %}" alt="loads">
                     </span>
                     {% endif %}
@@ -27,8 +27,11 @@
                 </div>
                 {% if new.total_news_per_day > 10 %}
                 <div class="bottom-field">
+                    <div class="post__loader">
+                        <img src="{% static 'img/preloader-currency.gif' %}" alt="load">
+                    </div>
                     <button class="news__read bttn">
-                        Читать еще
+                        <span>Читать еще</span>
                     </button>
                 </div>
                 {% endif %}
