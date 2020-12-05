@@ -19,8 +19,10 @@ var ready_scroll_flag = true;
         }
 
         $.get(query_url, function(responce){
-            $('.news__loader').hide()
-            $('.news__content').append(responce)
+            setTimeout(function(){
+                $('.news__loader').hide()
+                $('.news__content').append(responce)
+            }, 200);
         }).always(function(){
             unbindNewsEvent();
             bindNewsEvent();
