@@ -13,7 +13,7 @@ var ready_scroll_flag = true;
         let query_url = `${origin}/more_news_ajax/${category_slug}/${offset}`;
 
         // remove monkey patch
-        if (offset < 4) {
+        if (offset < 2) {
             $('.news__loader').hide()
             return;
         }
@@ -22,6 +22,8 @@ var ready_scroll_flag = true;
             $('.news__loader').hide()
             $('.news__content').append(responce)
         }).always(function(){
+            unbindNewsEvent();
+            bindNewsEvent();
             setTimeout(function(){
                 ready_scroll_flag = true; //Reset the flag here
             }, 200)
@@ -29,70 +31,81 @@ var ready_scroll_flag = true;
     }
 });
 
-$('.menuu .button').click(function(event) {
-    $(this).toggleClass('active');
-    $('.burger').toggleClass('active');
-    return false;
-});
 
-$('.bottom-field .news__read.bttn').click(function(event) {
-    let $btn = $(this)
+function unbindNewsEvent(){
+    $('.menuu .button').unbind();
+    $('.bottom-field .news__read.bttn').unbind();
+    $('.news__item .news__all').unbind();
+}
 
-    let $newsBlock = $(this).closest('.news__item');
-    let $dateBlock = $newsBlock.find('.date__text');
-    let $itemBlock = $newsBlock.find('.news__one');
+function bindNewsEvent(){
+    $('.menuu .button').click(function(event) {
+        $(this).toggleClass('active');
+        $('.burger').toggleClass('active');
+        return false;
+    });
 
-    let items_length = $itemBlock.length;
+    $('.bottom-field .news__read.bttn').click(function(event) {
+        let $btn = $(this)
 
-    let origin = document.location.origin;
-    let category_id = $newsBlock.data('category-id');
-    let date = $dateBlock.attr('date');
-    let limit = items_length+10;
+        let $newsBlock = $(this).closest('.news__item');
+        let $dateBlock = $newsBlock.find('.date__text');
+        let $itemBlock = $newsBlock.find('.news__one');
 
-    let query_url = `${origin}/news_ajax/${category_id}/${date}/${limit}`;
+        let items_length = $itemBlock.length;
 
-    $.ajax({
-        url: query_url,
-        success: function(responce){
-            $newsBlock.find('.items__box').html(responce);
+        let origin = document.location.origin;
+        let category_id = $newsBlock.data('category-id');
+        let date = $dateBlock.attr('date');
+        let limit = items_length+10;
 
-            if ($newsBlock.find('.news__one').length != limit){
+        let query_url = `${origin}/news_ajax/${category_id}/${date}/${limit}`;
+
+        $.ajax({
+            url: query_url,
+            success: function(responce){
+                $newsBlock.find('.items__box').html(responce);
+
+                if ($newsBlock.find('.news__one').length != limit){
+                    $newsBlock.find('.bottom-field').hide()
+                };
+            }
+        });
+    });
+
+    // TODO: remove copy-paste
+    $('.news__item .news__all').click(function(event) {
+        let $btn = $(this)
+
+        let $newsBlock = $(this).closest('.news__item');
+        let $dateBlock = $newsBlock.find('.date__text');
+        let $itemBlock = $newsBlock.find('.news__one');
+
+        let items_length = $itemBlock.length;
+
+        let origin = document.location.origin;
+        let category_id = $newsBlock.data('category-id');
+        let date = $dateBlock.attr('date');
+        let limit = $(this).data('total-news-per-day')
+
+        let query_url = `${origin}/news_ajax/${category_id}/${date}/${limit}`;
+
+        $.ajax({
+            url: query_url,
+            beforeSend: function(){
+                $btn.find('span').hide();
+                $btn.find('img').show();
+            },
+            success: function(responce){
+                $newsBlock.find('.items__box').html(responce);
                 $newsBlock.find('.bottom-field').hide()
-            };
-        }
+                $btn.hide(500)
+            }
+        });
     });
-});
+}
 
-// TODO: remove copy-paste
-$('.news__item .news__all').click(function(event) {
-    let $btn = $(this)
-
-    let $newsBlock = $(this).closest('.news__item');
-    let $dateBlock = $newsBlock.find('.date__text');
-    let $itemBlock = $newsBlock.find('.news__one');
-
-    let items_length = $itemBlock.length;
-
-    let origin = document.location.origin;
-    let category_id = $newsBlock.data('category-id');
-    let date = $dateBlock.attr('date');
-    let limit = $(this).data('total-news-per-day')
-
-    let query_url = `${origin}/news_ajax/${category_id}/${date}/${limit}`;
-
-    $.ajax({
-        url: query_url,
-        beforeSend: function(){
-            $btn.find('span').hide();
-            $btn.find('img').show();
-        },
-        success: function(responce){
-            $newsBlock.find('.items__box').html(responce);
-            $newsBlock.find('.bottom-field').hide()
-            $btn.hide(500)
-        }
-    });
-});
+bindNewsEvent()
 
 function changePriceTicker($el, newPrice){
     var lastPrice = parseFloat($el.text());
