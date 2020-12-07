@@ -1070,3 +1070,7 @@ color: red;
 .news .post__loader img {
     width: 30px;
 }
+
+.info__sign, .info__one {
+    max-height: 20px
+}
