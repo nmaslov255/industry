@@ -88,4 +88,6 @@ def news_ajax(request, category_id, start_date, limit=10):
 def feed(request):
     template = loader.get_template('main/feed.html')
     feed = Feed.objects.all().order_by('-date')
+    for idx, item in enumerate(feed):
+        feed[idx].tags = item.tags.split(',')
     return HttpResponse(template.render({'news': feed}, request))

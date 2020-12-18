@@ -32,8 +32,15 @@
             <h3>
                 <a href="{{post.source}}">{{post.title}}</a>
             </h3>
-            <p class="meta"><time>{{post.date | date:"Y-m-d H:m"}}</time>, <i># {{post.tags}}</i></p>
+            <p class="meta">
+                <time>{{post.date | date:"Y-m-d H:m"}}</time>
+            </p>
             <p>{{post.content}}</p>
+            <p class="meta">
+                {% for tag in post.tags %}
+                    <i># {{tag}}</i>
+                {% endfor %}
+            </p>
         </article>
     {% endfor %}
 </body>
