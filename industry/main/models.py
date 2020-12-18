@@ -24,3 +24,14 @@ class Post(models.Model):
     
     def __str__(self):
         return "{}".format(self.title)
+
+class Feed(models.Model):
+    source = models.CharField(max_length=2048)
+    
+    title =  models.CharField(max_length=256)
+    content = models.TextField()
+    date = models.DateTimeField('date published')
+    tags = models.CharField(max_length=256)
+
+    def __str__(self):
+        return "{}".format(self.title)

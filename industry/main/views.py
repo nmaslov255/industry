@@ -1,7 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 
-from .models import Post, Category
+from .models import Post, Category, Feed
 
 from .services.CRUD import get_posts, get_category, get_all_categories
 from .services.helpers import datetime_calendar
@@ -84,3 +84,8 @@ def news_ajax(request, category_id, start_date, limit=10):
 
     posts = get_posts(start_date, end_date, category_id)
     return HttpResponse(template.render({'posts': posts[:limit]}, request))
+
+def feed(request):
+    template = loader.get_template('main/feed.html')
+    feed = Feed.objects.all()
+    return HttpResponse(template.render({'news': feed}, request))

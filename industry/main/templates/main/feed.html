@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>news feed</title>
+    <style>
+        article {
+            width: 60%;
+            font-family: Arial;
+            margin: auto;
+            padding: 20px;
+            border-bottom: 2px dashed gray;
+        }
+        a {
+            color: #D92D31;
+            text-decoration: none
+        }
+        a:hover {
+            color: gray;
+            transition; 2s;
+        }
+        .meta {
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    {% for post in news %}
+        <article>
+            <h3>
+                <a href="{{post.source}}">{{post.title}}</a>
+            </h3>
+            <p class="meta"><time>{{post.date | date:"Y-m-d H:m"}}</time>, <i># {{post.tags}}</i></p>
+            <p>{{post.content}}</p>
+        </article>
+    {% endfor %}
+</body>
+</html>
