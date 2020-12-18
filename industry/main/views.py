@@ -87,5 +87,5 @@ def news_ajax(request, category_id, start_date, limit=10):
 
 def feed(request):
     template = loader.get_template('main/feed.html')
-    feed = Feed.objects.all()
+    feed = Feed.objects.all().order_by('-date')
     return HttpResponse(template.render({'news': feed}, request))
